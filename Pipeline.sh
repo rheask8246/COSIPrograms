@@ -68,14 +68,13 @@ o)
 esac
 done
 
-
-
 #check all the inputs to see if they are reasonable. 
 #PATH and COPY must be valid inputs
-
-
-
-
+if [[ -z "$Origin" ]]; then
+  printf "No origin folder for data entered"
+fi
+  
+  
 type nuclearizer >/dev/null 2>&1
 
 if [ $? -ne 0 ]; then
