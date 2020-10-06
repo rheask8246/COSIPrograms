@@ -71,7 +71,7 @@ done
 #check all the inputs to see if they are reasonable. 
 #PATH and COPY must be valid inputs
 if [[ -z "$Origin" ]]; then
-  printf "No origin folder for data entered"
+  printf "No origin folder for data entered \n"
 fi
   
   
