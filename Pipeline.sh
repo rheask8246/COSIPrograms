@@ -70,7 +70,7 @@ done
 
 #check all the inputs to see if they are reasonable. 
 #PATH and COPY must be valid inputs
-if [[ $minevents !=~ ^[+-]?[0-9]+$ ]]; then
+if ! [[ "$minevents" =~ ^[0-9]+$ ]]; then
   printf "Error: Minimum events must be an integer \n"
   exit 1;
 fi
