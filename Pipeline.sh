@@ -68,25 +68,39 @@ o)
 esac
 done
 
-#check all the inputs to see if they are reasonable. 
-#PATH and COPY must be valid inputs
+# minevents sanity check - must be integer
 if ! [[ "$minevents" =~ ^[0-9]+$ ]]; then
-  printf "Error: Minimum events must be an integer \n"
+  printf "Error: Minimum events must be an integer. \n"
   exit 1;
 fi
 
+# x coordinate sanity check - must be integer or float
 if ! [[ "$xcoord" =~ ^[0-9]+$ || "$xcoord" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
-  printf "Error: 3D X coordinate must be an integer \n"
+  printf "Error: 3D X coordinate must be an integer or a float. \n"
   exit 1;
 fi
 
+# y coordinate sanity check - must be integer or float
+if ! [[ "$ycoord" =~ ^[0-9]+$ || "$ycoord" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
+  printf "Error: 3D Y coordinate must be an integer or a float. \n"
+  exit 1;
+fi
+
+# z coordinate sanity check - must be integer or float
+if ! [[ "$zcoord" =~ ^[0-9]+$ || "$zcoord" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
+  printf "Error: 3D Z coordinate must be an integer or a float. \n"
+  exit 1;
+fi
+
+# Origin folder sanity check - must have a valid folder entered 
 if [[ -z "$Origin" ]]; then
-  printf "Error: No origin folder for data entered \n"
+  printf "Error: No origin folder for data entered. \n"
   exit 1;
 fi
 
+# COPY folder sanity check - must have a valid folder entered 
 if [[ -z "$COPY" ]]; then
-  printf "Error: No copy folder entered \n"
+  printf "Error: No copy folder entered. \n"
   exit 1;
 fi
   
