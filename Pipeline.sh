@@ -70,11 +70,16 @@ done
 
 #check all the inputs to see if they are reasonable. 
 #PATH and COPY must be valid inputs
+if [[ $minevents !=~ ^[+-]?[0-9]+$ ]]; then
+  printf "Error: Minimum events must be an integer \n"
+  exit 1;
+fi
 
 if [[ -z "$Origin" ]]; then
   printf "Error: No origin folder for data entered \n"
   exit 1;
 fi
+
 if [[ -z "$COPY" ]]; then
   printf "Error: No copy folder entered \n"
   exit 1;
