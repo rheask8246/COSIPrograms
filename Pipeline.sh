@@ -73,9 +73,11 @@ done
 
 if [[ -z "$Origin" ]]; then
   printf "Error: No origin folder for data entered \n"
+  exit 1;
 fi
 if [[ -z "$COPY" ]]; then
   printf "Error: No copy folder entered \n"
+  exit 1;
 fi
   
   
