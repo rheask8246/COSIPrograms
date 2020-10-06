@@ -75,7 +75,7 @@ if ! [[ "$minevents" =~ ^[0-9]+$ ]]; then
   exit 1;
 fi
 
-if ! [[ "$xcoord" =~ ^[0-9]+$ ]]; then
+if ! [[ "$xcoord" =~ ^[0-9]+$ || "$xcoord" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
   printf "Error: 3D X coordinate must be an integer \n"
   exit 1;
 fi
