@@ -103,6 +103,12 @@ if ! [[ "$energy" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
   exit 1;
 fi
 
+# title sanity check - must be a string
+if ![[ "$title" =~ ^[+-]?[0-9]+\.$ ]]; then
+  printf "Error: Title must be a string. \n"
+  exit 1;
+fi
+
 # Origin folder sanity check - must have a valid folder entered 
 if [[ -z "$Origin" ]]; then
   printf "Error: No origin folder for data entered. \n"
