@@ -70,8 +70,12 @@ done
 
 #check all the inputs to see if they are reasonable. 
 #PATH and COPY must be valid inputs
+
 if [[ -z "$Origin" ]]; then
-  printf "No origin folder for data entered \n"
+  printf "Error: No origin folder for data entered \n"
+fi
+if [[ -z "$COPY" ]]; then
+  printf "Error: No copy folder entered \n"
 fi
   
   
