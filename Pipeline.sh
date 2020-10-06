@@ -13,7 +13,6 @@ Usage() {
         echo "-x <int>          X coordinate of position in 3D Cartesian coordinates" 	
         echo "-y <int>          Y coordinate of position in 3D Cartesian coordinates" 
         echo "-z <int>          Z coordinate of position in 3D Cartesian coordinates" 
-        echo "-m <int>          Minimum number of events to use"
         echo "-l <str>          Displays ARM plot on logarithmic scale"
         echo "-e <float>        Peak energy value for source" 	
 	echo "-t <str>          Title for ARM Plot" 
@@ -89,6 +88,18 @@ fi
 # z coordinate sanity check - must be integer or float
 if ! [[ "$zcoord" =~ ^[0-9]+$ || "$zcoord" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
   printf "Error: 3D Z coordinate must be an integer or a float. \n"
+  exit 1;
+fi
+
+# set log sanity check - must be a string
+if ![[ "$set_log" =~ ^[+-]?[0-9]+\.$ ]]; then
+  printf "Error: Set log must be a string. \n"
+  exit 1;
+fi
+
+# peak energy sanity check - must be integer or float
+if ! [[ "$energy" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
+  printf "Error: Peak energy level must be a float. \n"
   exit 1;
 fi
 
