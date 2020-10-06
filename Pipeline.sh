@@ -75,6 +75,11 @@ if ! [[ "$minevents" =~ ^[0-9]+$ ]]; then
   exit 1;
 fi
 
+if ! [[ "$xcoord" =~ ^[0-9]+$ ]]; then
+  printf "Error: 3D X coordinate must be an integer \n"
+  exit 1;
+fi
+
 if [[ -z "$Origin" ]]; then
   printf "Error: No origin folder for data entered \n"
   exit 1;
