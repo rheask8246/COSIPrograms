@@ -158,7 +158,7 @@ for Run in ${Runs}; do
 
   InputFile="${Run}.roa.gz"
   OutputFile="${Run}.evta.gz"
-  timeout 120 nuclearizer -a -g ${Geometry} -c Nuclearizer_ER_Data.cfg -C ModuleOptions.XmlTagMeasurementLoaderROA.FileName=${InputFile} -C ModuleOptions.XmlTagEventSaver.FileName=${OutputFile} &
+  timeout 60 nuclearizer -a -g ${Geometry} -c Nuclearizer_ER_Data.cfg -C ModuleOptions.XmlTagMeasurementLoaderROA.FileName=${InputFile} -C ModuleOptions.XmlTagEventSaver.FileName=${OutputFile} &
 done
 wait
 
@@ -208,6 +208,6 @@ for Run in ${Run}; do
 #   echo “${Run}.${A}.tra.gz}” >> ${Run}.txt
    echo "${Run}.${A}.tra.gz" >> ${Run}.txt
 done
-   python3 /volumes/selene/users/yasaman/COSIPrograms/ARMoutput.py -f ${Run}.txt -m $minevents -x $xcoord -y $ycoord -z $zcoord -l $set_log -e $energy -t $title
+   python3 /volumes/selene/users/yasaman/COSIPrograms/ARMoutput.py -f ${Run}.txt -m $minevents -x $xcoord -y $ycoord -z $zcoord -l $set_log -e $energy -t "$title"
 done
 
