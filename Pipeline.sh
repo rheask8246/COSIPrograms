@@ -136,6 +136,7 @@ fi
 # Step zero: Create list of runs:
 Runs=""
 Files=$(ls $Origin/*.roa.gz)
+
 for File in ${Files}; do
   #cd /volumes/selene/users/yasaman/CopyData
   cd ${COPY}
@@ -157,7 +158,7 @@ for Run in ${Runs}; do
 
   InputFile="${Run}.roa.gz"
   OutputFile="${Run}.evta.gz"
-  nuclearizer -a -g ${Geometry} -c Nuclearizer_ER_Data.cfg -C ModuleOptions.XmlTagMeasurementLoaderROA.FileName=${InputFile} -C ModuleOptions.XmlTagEventSaver.FileName=${OutputFile} &
+  timeout 120 nuclearizer -a -g ${Geometry} -c Nuclearizer_ER_Data.cfg -C ModuleOptions.XmlTagMeasurementLoaderROA.FileName=${InputFile} -C ModuleOptions.XmlTagEventSaver.FileName=${OutputFile} &
 done
 wait
 
