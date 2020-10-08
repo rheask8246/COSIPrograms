@@ -92,10 +92,10 @@ if ! [[ "$zcoord" =~ ^[0-9]+$ || "$zcoord" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
 fi
 
 # set log sanity check - must be a string
-if ! [[ "$set_log" =~ ^[+-]?[0-9]+\.$ ]]; then
-  printf "Error: Set log must be a string. \n"
-  exit 1;
-fi
+#if ! [[ "$set_log" =~ ^[+-]?[0-9]+\.$ ]]; then
+#  printf "Error: Set log must be a string. \n"
+#  exit 1;
+#fi
 
 # peak energy sanity check - must be integer or float
 if ! [[ "$energy" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
@@ -104,10 +104,10 @@ if ! [[ "$energy" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
 fi
 
 # title sanity check - must be a string
-if ! [[ "$title" =~ ^[+-]?[0-9]+\.$ ]]; then
-  printf "Error: Title must be a string. \n"
-  exit 1;
-fi
+#if ! [[ "$title" =~ ^[+-]?[0-9]+\.$ ]]; then
+#  printf "Error: Title must be a string. \n"
+ # exit 1;
+#fi
 
 # Origin folder sanity check - must have a valid folder entered 
 if [[ -z "$Origin" ]]; then
