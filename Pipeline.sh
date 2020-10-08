@@ -92,7 +92,7 @@ if ! [[ "$zcoord" =~ ^[0-9]+$ || "$zcoord" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
 fi
 
 # set log sanity check - must be a string
-if ![[ "$set_log" =~ ^[+-]?[0-9]+\.$ ]]; then
+if ! [[ "$set_log" =~ ^[+-]?[0-9]+\.$ ]]; then
   printf "Error: Set log must be a string. \n"
   exit 1;
 fi
@@ -104,7 +104,7 @@ if ! [[ "$energy" =~ ^[+-]?[0-9]+\.?[0-9]*$ ]]; then
 fi
 
 # title sanity check - must be a string
-if ![[ "$title" =~ ^[+-]?[0-9]+\.$ ]]; then
+if ! [[ "$title" =~ ^[+-]?[0-9]+\.$ ]]; then
   printf "Error: Title must be a string. \n"
   exit 1;
 fi
