@@ -30,6 +30,7 @@ parser.add_argument('-z', '--zcoordinate', type=float, default='64', help='Z coo
 parser.add_argument('-l', '--logarithmic', type=str, default='no', help='If set to yes, displays ARM plot on a logarithmic-scaled y-axis.') 
 parser.add_argument('-e', '--energy', type=float, default='662', help='Peak energy value for source. Outputs ARM histograms with a +-1.5% energy window.')
 parser.add_argument('-t', '--title', type=str, default='ARM Plot for Compton Events', help='Title for ARM Plot')
+parser.add_argument('-b', '--batch', type=str default='no', help='If set to yes, runs program in batch mode.'
 
 args = parser.parse_args()
 
@@ -52,6 +53,9 @@ if int(args.minevents) < 1000000:
 if args.title != "":
     title = args.title
 
+if args.batch == 'yes':
+    M.gROOT.SetBatch(True)
+    
 ###################################################################################################################################################################################
 
 #Read in Files
@@ -181,7 +185,12 @@ legend.Draw()
 CanvasARM.Update()
 
 # Prevent the canvases from being closed
-import os
-print("ATTENTION: Please exit by clicking: File -> Close ROOT! Do not just close the window by clicking \"x\"")
-print("           ... and if you didn't honor this warning, and are stuck, execute the following in a new terminal: kill " + str(os.getpid()))
-M.gApplication.Run()
+
+if Batch == False:
+    import os
+    print("ATTENTION: Please exit by clicking: File -> Close ROOT! Do not just close the window by clicking \"x\"")
+    print("           ... and if you didn't honor this warning, and are stuck, execute the following in a new terminal: kill " + str(os.getpid()))
+    M.gApplication.Run()
+if Batch == True:
+    CanvasARM.SaveAs(FileName + ".pdf")
+    
