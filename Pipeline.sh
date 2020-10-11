@@ -158,7 +158,7 @@ for Run in ${Runs}; do
 
   InputFile="${Run}.roa.gz"
   OutputFile="${Run}.evta.gz"
-  timeout 60 nuclearizer -a -g ${Geometry} -c Nuclearizer_ER_Data.cfg -C ModuleOptions.XmlTagMeasurementLoaderROA.FileName=${InputFile} -C ModuleOptions.XmlTagEventSaver.FileName=${OutputFile} &
+  timeout 60 nuclearizer -a -g ${Geometry} -c Nuclearizer_ER_Data.cfg -C ModuleOptions.XmlTagMeasurementLoaderROA.FileName=${InputFile} -C ModuleOptions.XmlTagEventSaver.FileName=${OutputFile} -c ModuleOptions.XmlTagSimulationLoader.UseStopAfter=True -C ModuleOpetions.XmlTagSimulationLoader.MaximumAcceptedEvents="insert_var_here" &
 done
 wait
 
