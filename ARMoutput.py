@@ -30,7 +30,7 @@ parser.add_argument('-z', '--zcoordinate', type=float, default='64', help='Z coo
 parser.add_argument('-l', '--logarithmic', type=str, default='no', help='If set to yes, displays ARM plot on a logarithmic-scaled y-axis.') 
 parser.add_argument('-e', '--energy', type=float, default='662', help='Peak energy value for source. Outputs ARM histograms with a +-1.5% energy window.')
 parser.add_argument('-t', '--title', type=str, default='ARM Plot for Compton Events', help='Title for ARM Plot')
-parser.add_argument('-b', '--batch', type=str default='no', help='If set to yes, runs program in batch mode.'
+parser.add_argument('-b', '--batch', type=str, default='no', help='If set to yes, runs program in batch mode.')
 
 args = parser.parse_args()
 
