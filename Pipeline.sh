@@ -67,7 +67,7 @@ o)
 	Origin=$OPTARG;
 	echo "Setting the origin of the data to: $Origin";;
 n)
-	Origin=$OPTARG;
+	maxevents=$OPTARG;
 	echo "* Running ARM Output with maximum events: $maxevents";;
 esac
 done
