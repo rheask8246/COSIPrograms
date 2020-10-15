@@ -18,6 +18,7 @@ Usage() {
 	echo "-t <str>          Title for ARM Plot" 
 	echo "-d <str>		Destination of Copy"
 	echo "-o <str>		Origin of data"
+	echo "-max <int> 	Maximum number of events to use" 
 }	
 
 
@@ -32,6 +33,7 @@ zcoord=64
 set_log="no"
 energy=662
 title="Arm Plots for Compton Events"
+maxevents=100000
 
 echo "Selected ARM Output Options:"
 while getopts "m:x:y:z:m:l:e:t:d:o:" opt
@@ -64,6 +66,9 @@ d)
 o)
 	Origin=$OPTARG;
 	echo "Setting the origin of the data to: $Origin";;
+max)
+	Origin=$OPTARG;
+	echo "* Running ARM Output with maximum events: $maxevents";;
 esac
 done
 
@@ -158,7 +163,7 @@ for Run in ${Runs}; do
 
   InputFile="${Run}.roa.gz"
   OutputFile="${Run}.evta.gz"
-  timeout 60 nuclearizer -a -g ${Geometry} -c Nuclearizer_ER_Data.cfg -C ModuleOptions.XmlTagMeasurementLoaderROA.FileName=${InputFile} -C ModuleOptions.XmlTagEventSaver.FileName=${OutputFile} -c ModuleOptions.XmlTagSimulationLoader.UseStopAfter=True -C ModuleOpetions.XmlTagSimulationLoader.MaximumAcceptedEvents="insert_var_here" &
+  timeout 60 nuclearizer -a -g ${Geometry} -c Nuclearizer_ER_Data.cfg -C ModuleOptions.XmlTagMeasurementLoaderROA.FileName=${InputFile} -C ModuleOptions.XmlTagEventSaver.FileName=${OutputFile} -c ModuleOptions.XmlTagSimulationLoader.UseStopAfter=True -C ModuleOpetions.XmlTagSimulationLoader.MaximumAcceptedEvents=${maxevents} &
 done
 wait
 
