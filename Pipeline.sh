@@ -18,7 +18,7 @@ Usage() {
 	echo "-t <str>          Title for ARM Plot" 
 	echo "-d <str>		Destination of Copy"
 	echo "-o <str>		Origin of data"
-	echo "-max <int> 	Maximum number of events to use" 
+	echo "-n <int> 		Maximum number of events to use" 
 }	
 
 
@@ -36,7 +36,7 @@ title="Arm Plots for Compton Events"
 maxevents=100000
 
 echo "Selected ARM Output Options:"
-while getopts "m:x:y:z:m:l:e:t:d:o:" opt
+while getopts "m:x:y:z:m:l:e:t:d:o:n:" opt
 do
 case $opt in
 m)
@@ -66,7 +66,7 @@ d)
 o)
 	Origin=$OPTARG;
 	echo "Setting the origin of the data to: $Origin";;
-max)
+n)
 	Origin=$OPTARG;
 	echo "* Running ARM Output with maximum events: $maxevents";;
 esac
