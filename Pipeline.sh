@@ -218,6 +218,6 @@ for Run in ${Run}; do
    echo "${Run}.${A}.tra.gz" >> ${Run}.txt
 done
    echo "python3 /volumes/selene/users/yasaman/COSIPrograms/ARMoutput.py -f ${Run}.txt -m $minevents -x $xcoord -y $ycoord -z $zcoord -l $set_log -e $energy -t $title"
-   python3 /volumes/selene/users/yasaman/COSIPrograms/ARMoutput.py -f ${Run}.txt -m $minevents -x $xcoord -y $ycoord -z $zcoord -l $set_log -e $energy -t "$title"
+   python3 /volumes/selene/users/yasaman/COSIPrograms/ARMoutput.py -f ${Run}.txt -m $minevents -x $xcoord -y $ycoord -z $zcoord -l $set_log -e $energy -t "$title" -b yes
 done
 
