@@ -209,6 +209,10 @@ for A in ${Algorithms}; do
 done
 
 for Run in ${Run}; do
+   if [ -f ${Run}.txt ]; then
+     rm ${Run}.txt
+   fi
+
    for A in ${Algorithms}; do
 #   echo “${Run}.${A}.tra.gz}” >> ${Run}.txt
    echo "${Run}.${A}.tra.gz" >> ${Run}.txt
