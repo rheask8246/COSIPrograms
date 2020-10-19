@@ -31,6 +31,8 @@ parser.add_argument('-l', '--logarithmic', type=str, default='no', help='If set 
 parser.add_argument('-e', '--energy', type=float, default='662', help='Peak energy value for source. Outputs ARM histograms with a +-1.5% energy window.')
 parser.add_argument('-t', '--title', type=str, default='ARM Plot for Compton Events', help='Title for ARM Plot')
 parser.add_argument('-b', '--batch', type=str, default='no', help='If set to yes, runs program in batch mode.')
+parser.add_argument('-i', '--isotope', type=str, default='none', help='The name of the isotope')
+parser.add_argument('-r', '--run', type=str, default='none', help='The name of the run')
 
 args = parser.parse_args()
 
@@ -40,10 +42,12 @@ if args.filename != "":
 X = float(args.xcoordinate)
 Y = float(args.ycoordinate)
 Z = float(args.zcoordinate)
+print("INFO: Using location ({}/{}/{})".format(X, Y, Z))
 
 if args.logarithmic != "":
     log = args.logarithmic
 
+energy = args.energy
 low_e = 0.985 * float(args.energy)
 high_e = 1.015 * float(args.energy)
 
@@ -52,7 +56,12 @@ if int(args.minevents) < 1000000:
 
 if args.title != "":
     title = args.title
-    
+
+run=args.run
+isotope=args.isotope
+
+title = "{} ({}, {} keV): ARM comparison ".format(run, isotope, energy)
+
 Batch = False
 if args.batch == 'yes':
     M.gROOT.SetBatch(True)
@@ -61,11 +70,13 @@ if args.batch == 'yes':
 ###################################################################################################################################################################################
 
 #Read in Files
-trafiles = [None]*4
+trafiles = []
 f = open(args.filename, "r")
-for x in range(0,4):
-    trafiles[x] = str(f.readline()).strip()
-    print(trafiles[x])
+line = str(f.readline()).strip()
+while line:
+  trafiles.append(line)
+  print(trafiles[-1])
+  line = str(f.readline()).strip()
 
 # Load geometry:
 Geometry = M.MDGeometryQuest()
@@ -76,17 +87,20 @@ else:
   quit()
     
 #Create Histogram list and color
-HistARMlist = [None]*4
-for i in range(0,4):
-    HistARMlist[i] = M.TH1D("ARM Plot of Compton events" + str(i), title, 501, -180, 180)
+HistARMlist = []
+for i in range(0, len(trafiles)):
+    HistARMlist.append(M.TH1D("ARM Plot of Compton events" + str(i), title, 501, -180, 180))
     
 HistARMlist[0].SetLineColor(M.kRed)
-HistARMlist[1].SetLineColor(M.kGreen)
-HistARMlist[2].SetLineColor(M.kBlue)
-HistARMlist[3].SetLineColor(M.kBlack)
+if len(HistARMlist) >= 2: 
+  HistARMlist[1].SetLineColor(M.kGreen)
+if len(HistARMlist) >= 3: 
+  HistARMlist[2].SetLineColor(M.kBlue)
+if len(HistARMlist) >= 4: 
+  HistARMlist[3].SetLineColor(M.kBlack)
 
 # Load file
-for y in range(0,4):
+for y in range(0, len(trafiles)):
     Reader = M.MFileEventsTra()
     if Reader.Open(M.MString(trafiles[y])) == False:
         print("Unable to open file " + FileName + ". Aborting!")
@@ -103,9 +117,9 @@ for y in range(0,4):
             break
 
         if (Event.GetType() == M.MPhysicalEvent.c_Compton) and (low_e <= Event.Ei() <= high_e):
-            ARM_value = Event.GetARMGamma((M.MVector(X, Y, Z)), M.MCoordinateSystem.c_Cartesian3D)*(180/pi);
-            print(ARM_value)
-            HistARMlist[y].Fill(Event.GetARMGamma(M.MVector(X, Y, Z), M.MCoordinateSystem.c_Cartesian3D)*(180/pi));
+            ARM_value = Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi);
+            #print(ARM_value)
+            HistARMlist[y].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
         elif Event.GetType() == M.MPhysicalEvent.c_Photo:
             pass
 
@@ -114,7 +128,7 @@ FWHMs = [None]*4
 RMSs = [None]*4
 Peaks = [None]*4
 #if __name__ == '__main__':
-for i in range(0,4):
+for i in range(0, len(trafiles)):
     FWHMs[i] = pool.apply(h.bootstrapFWHM, args=(HistARMlist[i], 1000,))
     RMSs[i] = pool.apply(h.bootstrapRMS, args=(HistARMlist[i], 1000,))
     Peaks[i] = pool.apply(h.bootstrapPeak, args=(HistARMlist[i], 1000,))
@@ -126,7 +140,7 @@ pool.join()
 #Draw Histogram, Set Up Canvas
 CanvasARM = M.TCanvas("CanvasARM", title, 650, 800)
 print("Drawing ARM histograms for each method...")
-for m in range(0,4):
+for m in range(0, len(trafiles)):
     if log == 'yes':
         M.gPad.SetLogy()
         HistARMlist[0].GetYaxis().SetTitle("Counts [logarithmic]")
@@ -164,23 +178,26 @@ legend.AddEntry(HistARMlist[0], str(h.getMaxHist(HistARMlist[0])) + "+-" + str(P
 legend.AddEntry(HistARMlist[0], str(HistARMlist[0].GetEntries()), "l") 
 legend.AddEntry(HistARMlist[0], str(h.getFWHM(HistARMlist[0])) + "+-"+ str(FWHMs[0]), "l")
 
-legend.AddEntry(HistARMlist[1], "Bayes Method", "l")
-legend.AddEntry(HistARMlist[1], str(round(HistARMlist[1].GetRMS(), 2)) + "+-" + str(RMSs[1]), "l")
-legend.AddEntry(HistARMlist[1], str(h.getMaxHist(HistARMlist[1])) + "+-" + str(Peaks[1]), "l")
-legend.AddEntry(HistARMlist[1], str(HistARMlist[1].GetEntries()), "l")
-legend.AddEntry(HistARMlist[1], str(h.getFWHM(HistARMlist[1])) + "+-"+ str(FWHMs[1]), "l")
+if len(HistARMlist) >= 2: 
+  legend.AddEntry(HistARMlist[1], "Bayes Method", "l")
+  legend.AddEntry(HistARMlist[1], str(round(HistARMlist[1].GetRMS(), 2)) + "+-" + str(RMSs[1]), "l")
+  legend.AddEntry(HistARMlist[1], str(h.getMaxHist(HistARMlist[1])) + "+-" + str(Peaks[1]), "l")
+  legend.AddEntry(HistARMlist[1], str(HistARMlist[1].GetEntries()), "l")
+  legend.AddEntry(HistARMlist[1], str(h.getFWHM(HistARMlist[1])) + "+-"+ str(FWHMs[1]), "l")
 
-legend.AddEntry(HistARMlist[2], "MLP Method", "l")
-legend.AddEntry(HistARMlist[2], str(round(HistARMlist[2].GetRMS(), 2)) + "+-" + str(RMSs[2]), "l")
-legend.AddEntry(HistARMlist[2], str(h.getMaxHist(HistARMlist[2])) + "+-" + str(Peaks[2]), "l")
-legend.AddEntry(HistARMlist[2], str(HistARMlist[2].GetEntries()), "l")
-legend.AddEntry(HistARMlist[2], str(h.getFWHM(HistARMlist[2])) + "+-"+ str(FWHMs[2]), "l")
+if len(HistARMlist) >= 3: 
+  legend.AddEntry(HistARMlist[2], "MLP Method", "l")
+  legend.AddEntry(HistARMlist[2], str(round(HistARMlist[2].GetRMS(), 2)) + "+-" + str(RMSs[2]), "l")
+  legend.AddEntry(HistARMlist[2], str(h.getMaxHist(HistARMlist[2])) + "+-" + str(Peaks[2]), "l")
+  legend.AddEntry(HistARMlist[2], str(HistARMlist[2].GetEntries()), "l")
+  legend.AddEntry(HistARMlist[2], str(h.getFWHM(HistARMlist[2])) + "+-"+ str(FWHMs[2]), "l")
 
-legend.AddEntry(HistARMlist[3], "RF Method", "l")
-legend.AddEntry(HistARMlist[3], str(round(HistARMlist[3].GetRMS(), 2)) + "+-" + str(RMSs[3]), "l")
-legend.AddEntry(HistARMlist[3], str(h.getMaxHist(HistARMlist[3])) + "+-" + str(Peaks[3]), "l")
-legend.AddEntry(HistARMlist[3], str(HistARMlist[3].GetEntries()), "l")
-legend.AddEntry(HistARMlist[3], str(h.getFWHM(HistARMlist[3])) + "+-"+ str(FWHMs[3]), "l")
+if len(HistARMlist) >= 4: 
+  legend.AddEntry(HistARMlist[3], "RF Method", "l")
+  legend.AddEntry(HistARMlist[3], str(round(HistARMlist[3].GetRMS(), 2)) + "+-" + str(RMSs[3]), "l")
+  legend.AddEntry(HistARMlist[3], str(h.getMaxHist(HistARMlist[3])) + "+-" + str(Peaks[3]), "l")
+  legend.AddEntry(HistARMlist[3], str(HistARMlist[3].GetEntries()), "l")
+  legend.AddEntry(HistARMlist[3], str(h.getFWHM(HistARMlist[3])) + "+-"+ str(FWHMs[3]), "l")
 
 legend.Draw()
 
@@ -194,5 +211,5 @@ if Batch == False:
     print("           ... and if you didn't honor this warning, and are stuck, execute the following in a new terminal: kill " + str(os.getpid()))
     M.gApplication.Run()
 if Batch == True:
-    CanvasARM.SaveAs(FileName + ".pdf")
+    CanvasARM.SaveAs("Results_{}_{}_{}keV.pdf".format(run, isotope, energy))
     
