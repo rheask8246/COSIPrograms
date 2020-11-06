@@ -12,7 +12,8 @@ Usage() {
   echo "-m <int>          Minimum number of events to use"
   echo "-l <str>          Displays ARM plot on logarithmic scale"
   echo "-d <str>          Destination of Copy"
-  echo "-o <str>          Origin of data"
+  echo "-o <str>          Origin of COSI data"
+  echo "-t <path>         Origin of TMVA data"
   echo "-n <int>          Maximum number of events to use" 
   # a for Algorithm
   # g for geometry
@@ -21,6 +22,7 @@ Usage() {
 ScriptPath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 Origin="/volumes/selene/COSI_2016/ER/Data"
+TMVA="/volumes/selene/COSI_2016/ER/Sims"
 Data="Data"
 Geometry="/home/andreas/Science/Software/Nuclearizer/MassModel/COSI.DetectorHead.geo.setup"
 #Algorithms="Classic Bayes MLP RF"
@@ -41,17 +43,20 @@ while getopts "m:l:d:o:n:" opt
 do
 case $opt in
 m)
-        minevents=$OPTARG;
-        echo "* Running ARM Output with minimum events: $minevents";;
+  minevents=$OPTARG;
+  echo "* Running ARM Output with minimum events: $minevents";;
 l)
-        set_log=$OPTARG;
-        echo "Use logarithmic scale on y axis of plot? $set_los";;
+  set_log=$OPTARG;
+  echo "Use logarithmic scale on y axis of plot? $set_los";;
 d)
   Data=$OPTARG;
   echo "Setting copy folder to: ${Data}";;
 o)
   Origin=$OPTARG; 
   echo "Setting the origin of the data to: ${Origin}";;
+t)
+  TMVA=$OPTARG;
+  echo "Setting the origin of the TMVA training data to: ${TMVA}";;
 n)
   maxevents=$OPTARG;
   echo "* Running ARM Output with maximum events: $maxevents";;
@@ -73,6 +78,12 @@ fi
 # Origin folder sanity check - must have a valid folder entered 
 if ! [ -d "${Origin}" ]; then
   printf "Error: No origin folder for data entered. \n"
+  exit 1;
+fi
+
+# TMVA data folder = must be an exsting folder
+if ! [ -d "${TMVA}" ]; then
+  printf "Error: The TMVA folder does not exist. \n"
   exit 1;
 fi
 
