@@ -204,14 +204,14 @@ legend.Draw()
 CanvasARM.Update()
 
 #create txt file with comparable metrics
-metrics_file = open("log.FileName.txt", "w+")
+metrics_file = open("log.FileName.txt", "a+")
 methods = ["Classic Method", "Bayes Method", "MLP Method", "RF Method"]
-print(len(FWHMs))
-print("created a txt file...")
-for i in range(0, len(FWHMs)):
-    metrics_file.write("Metrics for {0}".format(methods[i]) + ":" + "\n")
-    metrics_file.write("FWHM:" + str(FWHMs[i]) + "\n")
-    metrics_file.write("RMS:" + str(RMSs[i]) + "\n")
+print("writing to  a txt file...")
+for i in range(len(FWHMs)):
+    metrics_file.write(str(FWHMs[i]) + "\t")
+for i in range(len(FWHMs)):    
+    metrics_file.write(str(RMSs[i]) + "\t")
+metrics_file.write("\n")
 metrics_file.close()
 
 # Prevent the canvases from being closed
