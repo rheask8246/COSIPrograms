@@ -27,7 +27,6 @@ TMVA="/volumes/selene/COSI_2016/ER/Sims"
 CFG="/volumes/selene/COSI_2016/ER/Pipeline"
 Data="Data"
 Geometry="/home/andreas/Science/Software/Nuclearizer/MassModel/COSI.DetectorHead.geo.setup"
-#Algorithms="Classic Bayes MLP RF"
 Algorithms="Classic Bayes MLP BDTD"
 
 #Options for ARM Output which can be set via command line
@@ -167,7 +166,7 @@ for A in ${Algorithms}; do
     ISOTOPE=$(echo ${Run} | awk -F. '{print $2}')
     if [[ ${A} == Classic ]] || [[ ${A} == Bayes ]]; then
       revan -a -n -c Revan_ER_${A}.cfg -g ${Geometry} -f ${Run}.evta.gz &> ${Run}.revan.${A}.log &
-    elif [[ ${A} == MLP ]] || [[ ${A} == RF ]]; then
+    elif [[ ${A} == MLP ]] || [[ ${A} == BDTD ]]; then
     
       TmvaFile=${Origin}/../Sims/${ISOTOPE}/AllSky/ComptonTMVA.v2.tmva
       if ! [ -f ${TmvaFile} ]; then
