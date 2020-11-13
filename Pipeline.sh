@@ -15,6 +15,7 @@ Usage() {
   echo "-o <str>          Origin of COSI data"
   echo "-t <path>         Origin of TMVA data"
   echo "-n <int>          Maximum number of events to use" 
+  echo "-c <path>         Origin of configuration files"
   # a for Algorithm
   # g for geometry
 }
@@ -23,6 +24,7 @@ ScriptPath="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
 Origin="/volumes/selene/COSI_2016/ER/Data"
 TMVA="/volumes/selene/COSI_2016/ER/Sims"
+CFG="/volumes/selene/COSI_2016/ER/Pipeline"
 Data="Data"
 Geometry="/home/andreas/Science/Software/Nuclearizer/MassModel/COSI.DetectorHead.geo.setup"
 #Algorithms="Classic Bayes MLP RF"
@@ -39,7 +41,7 @@ title="ARM Plots for Compton Events"
 maxevents=100000
 
 echo "Selected ARM Output Options:"
-while getopts "m:l:d:o:n:t:" opt
+while getopts "m:l:d:o:n:t:c:" opt
 do
 case $opt in
 m)
@@ -60,6 +62,9 @@ t)
 n)
   maxevents=$OPTARG;
   echo "* Running ARM Output with maximum events: $maxevents";;
+c)
+  CFG=$OPTARG;
+  echo "Setting the origin of the configuration files to: ${CFG}";;
 esac
 done
 
@@ -78,6 +83,12 @@ fi
 # Origin folder sanity check - must have a valid folder entered 
 if ! [ -d "${Origin}" ]; then
   printf "Error: No origin folder for data entered. \n"
+  exit 1;
+fi
+
+# CFG data folder = must be an exsting folder
+if ! [ -d "${CFG}" ]; then
+  printf "Error: The CFG folder does not exist. \n"
   exit 1;
 fi
 
@@ -120,7 +131,7 @@ echo "Runs: ${Runs}"
 
 
 # Copy the configuration files
-cp ${Origin}/../Pipeline/*.cfg ${Data}
+cp ${CFG}/*.cfg ${Data}
 
 # Move into the data directory
 cd ${Data}
