@@ -39,7 +39,7 @@ title="ARM Plots for Compton Events"
 maxevents=100000
 
 echo "Selected ARM Output Options:"
-while getopts "m:l:d:o:n:" opt
+while getopts "m:l:d:o:n:t:" opt
 do
 case $opt in
 m)
