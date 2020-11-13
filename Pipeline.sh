@@ -28,7 +28,7 @@ CFG="/volumes/selene/COSI_2016/ER/Pipeline"
 Data="Data"
 Geometry="/home/andreas/Science/Software/Nuclearizer/MassModel/COSI.DetectorHead.geo.setup"
 #Algorithms="Classic Bayes MLP RF"
-Algorithms="Classic Bayes MLP RF"
+Algorithms="Classic Bayes MLP BDTD"
 
 #Options for ARM Output which can be set via command line
 minevents=100000
