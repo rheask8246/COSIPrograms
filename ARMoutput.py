@@ -138,6 +138,14 @@ pool.join()
 #############################################################################################################################################################################
 
 #Draw Histogram, Set Up Canvas
+
+max = HistARMlist[0].GetMaximum()
+for m in range(1, len(trafiles)):
+    if HistARMlist[m].GetMaximum()>max:
+        max = HistARMlist[m].GetMaximum()
+for m in range(0, len(trafiles)):
+    HistARMlist[m].SetMaximum(1.1*max)
+
 CanvasARM = M.TCanvas("CanvasARM", title, 650, 800)
 print("Drawing ARM histograms for each method...")
 for m in range(0, len(trafiles)):
