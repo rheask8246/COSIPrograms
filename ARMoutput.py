@@ -7,6 +7,7 @@ from math import pi
 import argparse
 import Helper as h
 import multiprocessing as mp
+from os import path
 pool = mp.Pool(mp.cpu_count())
 
 #################################################################################################################################################################################
@@ -212,15 +213,28 @@ legend.Draw()
 CanvasARM.Update()
 
 #create txt file with comparable metrics
-metrics_file = open("log.FileName.txt", "a+")
 methods = ["Classic Method", "Bayes Method", "MLP Method", "RF Method"]
-print("writing to  a txt file...")
-for i in range(len(FWHMs)):
-    metrics_file.write(str(FWHMs[i]) + "\t")
-for i in range(len(FWHMs)):    
-    metrics_file.write(str(RMSs[i]) + "\t")
+print("writing to a txt file...")
+#if not path.exists("log.FileName.txt"):
+metrics_file = open("log.FileName.txt", "a+")
+  #  metrics_file.write("__________FWHM__________" + "__________RMS__________" + "\n")
+  #  metrics_file.write("\t" + "Classic" + "\t" "Bayes" + "\t" + "MLP" + "\t" + "BDTD" + "\t" + "Classic" + "\t" "Bayes" + "\t" + "MLP" + "\t" + "BDTD" + "\n")
+  #  metric_file.write("Energy Line: " + str(energy) + "\t")
+for i in range(0, len(FWHMs)):
+    metrics_file.write(str(h.getFWHM(HistARMlist[i])) + "\t")
+for i in range(0, len(FWHMs)):
+    metrics_file.write(str(round(HistARMlist[i].GetRMS(), 2)) + "\t")
 metrics_file.write("\n")
 metrics_file.close()
+#else:
+#    metrics_file = open("log.FileName.txt", "a+")
+#    metric_file.write("Energy Line: " + str(energy) + "\t")
+#    for i in range(0, len(FWHMs)):
+#        metrics_file.write(str(FWHMs[i]) + "\t")
+#    for i in range(0, len(FWHMs)):    
+#        metrics_file.write(str(RMSs[i]) + "\t")
+#    metrics_file.write("\n")
+#    metrics_file.close()
 
 # Prevent the canvases from being closed
 
