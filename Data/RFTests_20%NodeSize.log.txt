@@ -1,0 +1,4 @@
+Run148.Co60.RFTests_20%NodeSize.txt: 6.9	42.66	
+Run148.Co60.RFTests_20%NodeSize.txt: 5.7	42.62	
+Run148.Co60.RFTests_20%NodeSize.txt: 6.9	42.66	
+Run148.Co60.RFTests_20%NodeSize.txt: 5.7	42.62	

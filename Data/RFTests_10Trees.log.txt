@@ -1,0 +1,66 @@
+Length of FWHMS: 1
+Length of HistARMlist: 1
+0	0.0	
+Length of FWHMS: 1
+Length of HistARMlist: 1
+0	0.0	
+Length of FWHMS: 1
+Length of HistARMlist: 1
+0	0.0	
+Length of FWHMS: 1
+Length of HistARMlist: 1
+0	0.0	
+Length of FWHMS: 1
+Length of HistARMlist: 1
+0	0.0	
+Length of FWHMS: 1
+Length of HistARMlist: 1
+0	0.0	
+Length of FWHMS: 1
+Length of HistARMlist: 1
+6.47	39.64	
+Length of FWHMS: 1
+Length of HistARMlist: 1
+5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.47	39.64	
+Run148.Co60.RFTests_10Trees.txt: 5.75	38.7	
+Run148.Co60.RFTests_10Trees.txt: 6.2	39.84	
+Run148.Co60.RFTests_10Trees.txt: 6.1	38.99	
+Run148.Co60.RFTests_10Trees.txt: 6.2	39.84	
+Run148.Co60.RFTests_10Trees.txt: 6.1	38.99	
+Run148.Co60.RFTests_10Trees.txt: 6.2	39.84	
+Run148.Co60.RFTests_10Trees.txt: 6.1	38.99	
+Run148.Co60.RFTests_10Trees.txt: 6.2	39.84	
+Run148.Co60.RFTests_10Trees.txt: 6.1	38.99	
+Run148.Co60.RFTests_10Trees.txt: 6.2	39.84	
+Run148.Co60.RFTests_10Trees.txt: 6.1	38.99	
+Run148.Co60.RFTests_10Trees.txt: 6.2	39.84	
+Run148.Co60.RFTests_10Trees.txt: 6.1	38.99	
+Run148.Co60.RFTests_10Trees.txt: 6.2	39.84	
+Run148.Co60.RFTests_10Trees.txt: 6.1	38.99	
+Run148.Co60.RFTests_10Trees.txt: 6.2	39.84	
+Run148.Co60.RFTests_10Trees.txt: 6.1	38.99	
+Run148.Co60.RFTests_10Trees.txt: 6.2	39.84	
+Run148.Co60.RFTests_10Trees.txt: 6.1	38.99	

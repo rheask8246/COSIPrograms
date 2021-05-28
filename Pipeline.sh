@@ -27,7 +27,7 @@ TMVA="/volumes/selene/COSI_2016/ER/Sims"
 CFG="/volumes/selene/COSI_2016/ER/Pipeline"
 Data="Data"
 Geometry="/home/andreas/Science/Software/Nuclearizer/MassModel/COSI.DetectorHead.geo.setup"
-Algorithms="Classic Bayes MLP BDTD"
+Algorithms="BDTD"
 
 #Options for ARM Output which can be set via command line
 minevents=100000
@@ -38,6 +38,9 @@ set_log="no"
 energy=662
 title="ARM Plots for Compton Events"
 maxevents=100000
+
+Descriptions=("RFTests_5Cuts RFTests_10Cuts RFTests_20Cuts RFTests_50Cuts RFTests_100Cuts RFTests_200Cuts RFTests_500Cuts RFTests_1000Cuts")
+
 
 echo "Selected ARM Output Options:"
 while getopts "m:l:d:o:n:t:c:" opt
@@ -159,28 +162,35 @@ for Run in ${Runs}; do
 done
 
 # Step two: Run revan
-for A in ${Algorithms}; do
-  for Run in ${Runs}; do
+for D in ${Descriptions}; do
+	echo ${D}
+done
+
+
+for D in ${Descriptions}; do
+	echo "Running revan for ${D}"
+   for A in ${Algorithms}; do
+  	for Run in ${Runs}; do
     mwait -p=revan -i=cores
     
     ISOTOPE=$(echo ${Run} | awk -F. '{print $2}')
     if [[ ${A} == Classic ]] || [[ ${A} == Bayes ]]; then
-      revan -a -n -c Revan_ER_${A}.cfg -g ${Geometry} -f ${Run}.evta.gz &> ${Run}.revan.${A}.log &
+      revan -a -n -c Revan_ER_${A}.cfg -g ${Geometry} -f ${Run}.evta.gz &> ${Run}.revan.${A}.${D}.log &
     elif [[ ${A} == MLP ]] || [[ ${A} == BDTD ]]; then
     
-      TmvaFile=${Origin}/../Sims/${ISOTOPE}/AllSky/ComptonTMVA.v2.tmva
+      TmvaFile=${Origin}/../Sims/${ISOTOPE}/AllSky/${D}.tmva
       if ! [ -f ${TmvaFile} ]; then
         echo "ERROR: TMVA file does not exist: ${TmvaFile}"
         continue
       fi
       
-      WeightFile=${Origin}/../Sims/${ISOTOPE}/AllSky/ComptonTMVA.v2/N2/weights/TMVAClassification_${A}.weights.xml
+      WeightFile=${Origin}/../Sims/${ISOTOPE}/AllSky/${D}/N2/weights/TMVAClassification_${A}.weights.xml
       if ! [ -f ${WeightFile} ]; then
         echo "ERROR: TMVA file does not exist: ${WeightFile}"
         continue
       fi
       
-      revan -a -n -c Revan_ER_${A}.cfg -g ${Geometry} -f ${Run}.evta.gz -C CSRTMVAFile=${TmvaFile} -C CSRTMVAMethods=${A} &> ${Run}.revan.${A}.log &
+      revan -a -n -c Revan_ER_${A}.cfg -g ${Geometry} -f ${Run}.evta.gz -C CSRTMVAFile=${TmvaFile} -C CSRTMVAMethods=${A} &> ${Run}.revan.${A}.${D}.log &
     else 
       echo "Error when running Revan: Unknown algorithm: ${A}"
     fi
@@ -188,21 +198,26 @@ for A in ${Algorithms}; do
   echo "INFO: Waiting for all revan instances for algorithm ${A} to finish"
   wait
   for Run in ${Runs}; do
-    mv ${Run}.tra.gz ${Run}.${A}.tra.gz
-  done
+    mv ${Run}.tra.gz ${Run}.${A}.${D}.tra.gz
+  done 
+done
+echo "Finished running through all algorithms for ${D}"
+continue
 done
 
 
+for D in ${Descriptions}; do
 for Run in ${Runs}; do
    mwait -p=python3 -i=cores
 
-   if [ -f ${Run}.txt ]; then
-     rm ${Run}.txt
+   if [ -f ${Run}.${D}.txt ]; then
+     rm ${Run}.${D}.txt
    fi
 
    for A in ${Algorithms}; do
-     echo "${Run}.${A}.tra.gz" >> ${Run}.txt
+     echo "${Run}.${A}.${D}.tra.gz" >> ${Run}.${D}.txt
    done
+done
    
    # Retrieve the positions from the data sheet
    Isotope=$( cat ${Origin}/DataSets.txt | grep ${Run} | awk '{ print $2 }')
@@ -227,9 +242,11 @@ for Run in ${Runs}; do
    fi
    
    for L in ${Lines}; do
-     echo "INFO: python3 ${ScriptPath}/ARMoutput.py -f ${Run}.txt -m $minevents -x $XCoord -y $YCoord -z $ZCoord -l $set_log -e ${L} -t $title -b yes"
-     python3 ${ScriptPath}/ARMoutput.py -f ${Run}.txt -m $minevents -x $XCoord -y $YCoord -z $ZCoord -l $set_log -e ${L} -b yes -r ${Run} -i ${Isotope} &> ARM.${Run}.${L}keV.log &
+	for D in ${Descriptions}; do   
+     echo "INFO: python3 ${ScriptPath}/ARMoutput.py -f ${Run}.${D}.txt -m $minevents -x $XCoord -y $YCoord -z $ZCoord -l $set_log -e ${L} -t $title -b yes -p ${D}"
+     python3 ${ScriptPath}/ARMoutput.py -f ${Run}.${D}.txt -m $minevents -x $XCoord -y $YCoord -z $ZCoord -l $set_log -e ${L} -b yes -r ${Run} -i ${Isotope} -p ${D} &> ARM.${Run}.${D}.${L}keV.log &
    done
+done
 done
 
 echo "INFO: Waiting for all python instances to finish"

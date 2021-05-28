@@ -1,0 +1,182 @@
+
+**************************************************************************
+*                                                                        *
+*                       Revan - real event analysis                      *
+*                                                                        *
+*             This program is part of MEGAlib version 3.03.01            *
+*                (C) by Andreas Zoglauer and contributors                *
+*                                                                        *
+*                      Master reference for MEGAlib:                     *
+*            A. Zoglauer et al., NewAR 50 (7-8), 629-632, 2006           *
+*                                                                        *
+*            For more information about MEGAlib please visit:            *
+*                        http://megalibtoolkit.com                       *
+*                                                                        *
+**************************************************************************
+
+              You are using a development version of MEGAlib              
+
+Command-line parser: Do not use the gui
+Command-line parser: Use configuration file /volumes/selene/users/rhea/COSIPrograms/Data/Revan_ER_Classic.cfg
+Command-line parser: No X-client or ROOT in batch mode: Using batch mode
+                     If you didn't give a batch command, the program will exit.
+Command-line parser: Use geometry file /home/andreas/Science/Software/Nuclearizer/MassModel/COSI.DetectorHead.geo.setup
+Command-line parser: Use file /volumes/selene/users/rhea/COSIPrograms/Data/Run148.Co60.evta.gz
+Stage 1 (reading of file(s)) finished after 0.0637102 sec
+Stage 2 (evaluating constants) finished after 0.107277 sec
+Stage 3 (evaluating vectors) finished after 0.110917 sec
+Stage 4 (evaluating for loops) finished after 0.244113 sec
+Stage 5 (evaluating random numbers) finished after 0.244655 sec
+Stage 6 (evaluating if clauses + initial maths evaluation) finished after 0.438826 sec
+   *** User Info: "Loading  shields"  
+Stage 7 (analyzing primary keywords) finished after 0.459366 sec
+Stage 8 (analyzing "Copies") finished after 0.46175 sec
+Stage 9 (analyzing all properties) finished after 0.691168 sec
+Stage 10 (generating clones) finished after 0.691472 sec
+Stage 11 (validation & post-processing) finished after 0.824529 sec
+Stage 12 (volume tree optimization) finished after 0.824606 sec
+Geometry BalloonGeometryWithTwelveDetectors loaded!
+Command-line parser: Analyzing...
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-6.7977, -7.42935, 3.03129)   Stop: (-7.5977, -7.09361, 3.7735)
+         Total length in volume: 1.14175
+         Total length in daughters: 1.14175
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-6.5977, -5.28083, 3.07787)   Stop: (-7.5977, -4.22935, 3.7735)
+         Total length in volume: 1.6092
+         Total length in daughters: 1.6092
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-7.1977, 8.42935, -2.5951)   Stop: (-6.7977, 7.62935, -1.3365)
+         Total length in volume: 1.54404
+         Total length in daughters: 1.54404
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-6.7977, -8.42935, 2.83204)   Stop: (-6.3977, -8.22935, 3.7735)
+         Total length in volume: 1.04228
+         Total length in daughters: 1.04228
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-7.3977, 4.42935, -2.291)   Stop: (-6.7977, 3.42935, -1.3365)
+         Total length in volume: 1.50701
+         Total length in daughters: 1.50701
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (6.3977, 8.62935, 1.10045)   Stop: (7.13588, 8.42935, -0.2365)
+         Total length in volume: 1.54024
+         Total length in daughters: 1.54024
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-6.37855, -4.22935, 0.64307)   Stop: (-5.9977, -3.82935, -0.2165)
+         Total length in volume: 1.02172
+         Total length in daughters: 1.02172
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-5.77913, 4.02935, -1.99656)   Stop: (-5.1977, 3.62935, -2.8065)
+         Total length in volume: 1.07427
+         Total length in daughters: 1.07427
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-2.44156, -6.62935, 3.66625)   Stop: (-6.9977, -5.02935, 3.7735)
+         Total length in volume: 4.83011
+         Total length in daughters: 4.83011
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (6.7977, 2.62935, -1.81267)   Stop: (6.22507, 2.82935, -1.3065)
+         Total length in volume: 0.790008
+         Total length in daughters: 0.790008
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-7.5977, -5.02935, 2.3798)   Stop: (-7.3977, -4.22935, 3.7735)
+         Total length in volume: 1.61938
+         Total length in daughters: 1.61938
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-6.9977, -4.22935, 2.68708)   Stop: (-6.7977, -3.62935, 3.7735)
+         Total length in volume: 1.2571
+         Total length in daughters: 1.2571
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (4.7977, 5.22935, -2.59091)   Stop: (5.3977, 4.42935, -2.7965)
+         Total length in volume: 1.02091
+         Total length in daughters: 1.02092
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (6.1977, 5.82935, 0.40427)   Stop: (6.7977, 5.62935, 1.2335)
+         Total length in volume: 1.04289
+         Total length in daughters: 1.04289
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-5.70501, -8.42935, 3.46234)   Stop: (-5.3977, -9.02935, 2.2835)
+         Total length in volume: 1.35798
+         Total length in daughters: 1.35798
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-2.7977, 4.82935, -2.31507)   Stop: (-2.3977, 5.22935, -1.3365)
+         Total length in volume: 1.13031
+         Total length in daughters: 1.13031
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (-4.9977, -9.02935, 3.43384)   Stop: (-5.5977, -9.42935, 2.2835)
+         Total length in volume: 1.35767
+         Total length in daughters: 1.35767
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (6.50508, 4.82935, 0.53398)   Stop: (6.7977, 5.61755, -0.2365)
+         Total length in volume: 1.14041
+         Total length in daughters: 1.14041
+         --> It is extremely likely that you have overlaps in your geometry!
+Warning: Negative length in volume: IRShieldAluInside: -1e-07
+         Start: (6.9977, 4.22935, 3.06581)   Stop: (6.7977, 3.82935, 2.2935)
+         Total length in volume: 0.892452
+         Total length in daughters: 0.892452
+         --> It is extremely likely that you have overlaps in your geometry!
+
+---------------------------------------------------------------------------
+
+# Tracked events file options
+# Date 2021-03-17 12:25:24
+# OriginalFile /volumes/selene/users/rhea/COSIPrograms/Data/Run148.Co60.evta.gz
+# GeometryFile /home/andreas/Science/Software/Nuclearizer/MassModel/COSI.DetectorHead.geo.setup
+# 
+# CSR Chi-Square options:
+# 
+# Test statistics:                 0
+# QualityFactorMin:                0
+# QualityFactorMax:                1000
+# MaxNInteractions:                7
+# UseComptelTypeEvents:            1
+# AssumeD1First:                   0
+# UndecidedHandling:               3
+# GuaranteeStartD1:                0
+# RejectOneDetectorTypeOnlyEvents: 0
+# 
+
+----------------------------------------------------------------------------
+
+
+----------------------------------------------------------------------------
+
+Event statistics for all triggered (!) events:
+  Number of events ....................................... 252116 (100.000%)
+  Number of events, which passed event selections ........ 250221 ( 99.248%)
+  Reconstructable events ................................. 252116 (100.000%)
+       Single-site  ...................................... 158154 ( 62.731%)
+       Compton  ..........................................  92067 ( 36.518%)
+           Decay  ........................................      0 (  0.000%)
+       Pair  .............................................      0 (  0.000%)
+       Muon  .............................................      0 (  0.000%)
+       PET . .............................................      0 (  0.000%)
+       Multi  ............................................      0 (  0.000%)
+
+Rejection reasons for not reconstructable events:
+  None ...................................................     18
+  Too many hits in CSR ...................................      2
+  Comptel type with incompatible kinematics ..............   1893
+    Total ................................................   1913
+
+----------------------------------------------------------------------------
+
+
+Event reconstruction finished in 11.8229 sec.

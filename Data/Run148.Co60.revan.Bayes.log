@@ -1,0 +1,42 @@
+
+**************************************************************************
+*                                                                        *
+*                       Revan - real event analysis                      *
+*                                                                        *
+*             This program is part of MEGAlib version 3.03.01            *
+*                (C) by Andreas Zoglauer and contributors                *
+*                                                                        *
+*                      Master reference for MEGAlib:                     *
+*            A. Zoglauer et al., NewAR 50 (7-8), 629-632, 2006           *
+*                                                                        *
+*            For more information about MEGAlib please visit:            *
+*                        http://megalibtoolkit.com                       *
+*                                                                        *
+**************************************************************************
+
+              You are using a development version of MEGAlib              
+
+Command-line parser: Do not use the gui
+Command-line parser: Use configuration file /volumes/selene/users/rhea/COSIPrograms/Data/Revan_ER_Bayes.cfg
+Command-line parser: No X-client or ROOT in batch mode: Using batch mode
+                     If you didn't give a batch command, the program will exit.
+Command-line parser: Use geometry file /home/andreas/Science/Software/Nuclearizer/MassModel/COSI.DetectorHead.geo.setup
+Command-line parser: Use file /volumes/selene/users/rhea/COSIPrograms/Data/Run148.Co60.evta.gz
+Stage 1 (reading of file(s)) finished after 0.0648245 sec
+Stage 2 (evaluating constants) finished after 0.108711 sec
+Stage 3 (evaluating vectors) finished after 0.112349 sec
+Stage 4 (evaluating for loops) finished after 0.246905 sec
+Stage 5 (evaluating random numbers) finished after 0.247444 sec
+Stage 6 (evaluating if clauses + initial maths evaluation) finished after 0.443145 sec
+   *** User Info: "Loading  shields"  
+Stage 7 (analyzing primary keywords) finished after 0.463843 sec
+Stage 8 (analyzing "Copies") finished after 0.466245 sec
+Stage 9 (analyzing all properties) finished after 0.692866 sec
+Stage 10 (generating clones) finished after 0.693158 sec
+Stage 11 (validation & post-processing) finished after 0.827138 sec
+Stage 12 (volume tree optimization) finished after 0.827212 sec
+Geometry BalloonGeometryWithTwelveDetectors loaded!
+Command-line parser: Analyzing...
+Files for Bayesian Compton Tracking not found: "/volumes/crius/users/andreas/COSI_2016/ER/Sims/Cs137/AllSky/ComptonTMVADataSets.p1.inc1.mc.goodbad.rsp"
+MRawEventAnalyzer: Pre-analysis failed!
+Event reconstruction: Initialization failed.

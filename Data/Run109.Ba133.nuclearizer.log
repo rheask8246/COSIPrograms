@@ -1,0 +1,54 @@
+Command-line parser: Use configuration file Nuclearizer_ER_Data.cfg
+Command-line parser: Changing this configuration value: ModuleOptions.XmlTagMeasurementLoaderROA.FileName=/volumes/selene/users/rhea/boosted_decision_tree_sims/Copied_Data/Data/Run109.Ba133.roa.gz
+Command-line parser: Changing this configuration value: ModuleOptions.XmlTagEventSaver.FileName=Run109.Ba133.evta.gz
+Command-line parser: Changing this configuration value: ModuleOptions.XmlTagSimulationLoader.UseStopAfter=True
+Command-line parser: Changing this configuration value: ModuleOptions.XmlTagSimulationLoader.MaximumAcceptedEvents=100000
+Command-line parser: Use geometry file /home/andreas/Science/Software/Nuclearizer/MassModel/COSI.DetectorHead.geo.setup
+Stage 1 (reading of file(s)) finished after 0.0745361 sec
+Stage 2 (evaluating constants) finished after 0.119499 sec
+Stage 3 (evaluating vectors) finished after 0.123138 sec
+Stage 4 (evaluating for loops) finished after 0.265185 sec
+Stage 5 (evaluating random numbers) finished after 0.265939 sec
+Stage 6 (evaluating if clauses + initial maths evaluation) finished after 0.498045 sec
+   *** User Info: "Loading  shields"  
+Stage 7 (analyzing primary keywords) finished after 0.520393 sec
+Stage 8 (analyzing "Copies") finished after 0.523926 sec
+Stage 9 (analyzing all properties) finished after 0.777396 sec
+Stage 10 (generating clones) finished after 0.77775 sec
+
+Cross sections have changed or are missing. Starting calculation using cosima (Geant4)!
+
+   ***  Error  ***
+Unable to create cosima source file for cross section creation
+   ***  Warning  ***  
+Not all cross section files are present!
+Stage 11 (validation & post-processing) finished after 0.807571 sec
+Stage 12 (volume tree optimization) finished after 0.807629 sec
+Geometry BalloonGeometryWithTwelveDetectors loaded!
+MNCTDepthCalibrator: from splines file, detector 0 has thicknesss 1.49
+MNCTDepthCalibrator: from splines file, detector 1 has thicknesss 1.45
+MNCTDepthCalibrator: from splines file, detector 2 has thicknesss 1.5
+MNCTDepthCalibrator: from splines file, detector 3 has thicknesss 1.45
+MNCTDepthCalibrator: from splines file, detector 4 has thicknesss 1.51
+MNCTDepthCalibrator: from splines file, detector 5 has thicknesss 1.5
+MNCTDepthCalibrator: from splines file, detector 6 has thicknesss 1.48
+MNCTDepthCalibrator: from splines file, detector 7 has thicknesss 1.47
+MNCTDepthCalibrator: from splines file, detector 8 has thicknesss 1.49
+MNCTDepthCalibrator: from splines file, detector 9 has thicknesss 1.47
+MNCTDepthCalibrator: from splines file, detector 10 has thicknesss 1.42
+MNCTDepthCalibrator: from splines file, detector 11 has thicknesss 1.45
+Error in MModuleReadOutAssemblyQueues::EnableSorting:
+You cannot change the sorting mode while events are in the queue!
+Spawned module: Universal energy calibrator
+EnergyCalibrationUniversal: Error: Energy-fit not found for read-out element Detector: 2, side: pos, strip: 35
+EnergyCalibrationUniversal: Error: Energy-fit not found for read-out element Detector: 3, side: neg, strip: 12
+EnergyCalibrationUniversal: Error: Energy-fit not found for read-out element Detector: 2, side: pos, strip: 37
+EnergyCalibrationUniversal: Error: Energy-fit not found for read-out element Detector: 3, side: neg, strip: 12
+EnergyCalibrationUniversal: Error: Energy-fit not found for read-out element Detector: 2, side: pos, strip: 37
+Error in MModuleReadOutAssemblyQueues::EnableSorting:
+You cannot change the sorting mode while events are in the queue!
+Spawned module: Universal energy calibrator
+EnergyCalibrationUniversal: Error: Energy-fit not found for read-out element Detector: 3, side: neg, strip: 12
+Error in MModuleReadOutAssemblyQueues::EnableSorting:
+You cannot change the sorting mode while events are in the queue!
+Spawned module: Universal energy calibrator

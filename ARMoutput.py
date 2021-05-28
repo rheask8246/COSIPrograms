@@ -34,6 +34,9 @@ parser.add_argument('-t', '--title', type=str, default='"ARM Plot for Compton Ev
 parser.add_argument('-b', '--batch', type=str, default='no', help='If set to yes, runs program in batch mode.')
 parser.add_argument('-i', '--isotope', type=str, default='none', help='The name of the isotope')
 parser.add_argument('-r', '--run', type=str, default='none', help='The name of the run')
+parser.add_argument('-p', '--training', type=str, default='none', help='The name of the training output file')
+
+
 
 args = parser.parse_args()
 
@@ -60,6 +63,7 @@ if args.title != "":
 
 run=args.run
 isotope=args.isotope
+training = args.training
 
 title = "{} ({}, {} keV): ARM comparison ".format(run, isotope, energy)
 
@@ -90,7 +94,7 @@ else:
 #Create Histogram list and color
 HistARMlist = []
 for i in range(0, len(trafiles)):
-    HistARMlist.append(M.TH1D("ARM Plot of Compton events" + str(i), title, 501, -180, 180))
+    HistARMlist.append(M.TH1D("ARM Plot of Compton events" + str(i), title, 3601, -180, 180))
     
 HistARMlist[0].SetLineColor(M.kRed)
 if len(HistARMlist) >= 2: 
@@ -119,15 +123,15 @@ for y in range(0, len(trafiles)):
 
         if (Event.GetType() == M.MPhysicalEvent.c_Compton) and (low_e <= Event.Ei() <= high_e):
             ARM_value = Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi);
-            #print(ARM_value)
+            print(ARM_value)
             HistARMlist[y].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
         elif Event.GetType() == M.MPhysicalEvent.c_Photo:
             pass
 
 #Parallelizing
-FWHMs = [None]*4
-RMSs = [None]*4
-Peaks = [None]*4
+FWHMs = [None]*len(trafiles)
+RMSs = [None]*len(trafiles)
+Peaks = [None]*len(trafiles)
 #if __name__ == '__main__':
 for i in range(0, len(trafiles)):
     FWHMs[i] = pool.apply(h.bootstrapFWHM, args=(HistARMlist[i], 1000,))
@@ -216,14 +220,17 @@ CanvasARM.Update()
 methods = ["Classic Method", "Bayes Method", "MLP Method", "RF Method"]
 print("writing to a txt file...")
 #if not path.exists("log.FileName.txt"):
-metrics_file = open("log.FileName.txt", "a+")
-  #  metrics_file.write("__________FWHM__________" + "__________RMS__________" + "\n")
-  #  metrics_file.write("\t" + "Classic" + "\t" "Bayes" + "\t" + "MLP" + "\t" + "BDTD" + "\t" + "Classic" + "\t" "Bayes" + "\t" + "MLP" + "\t" + "BDTD" + "\n")
-  #  metric_file.write("Energy Line: " + str(energy) + "\t")
+metrics_file = open(training+".log.txt", "a+")
+
+#metrics_file.write("Length of FWHMS: " + str(len(FWHMs)) + "\n")
+#metrics_file.write("Length of HistARMlist: "+ str(len(HistARMlist))+ "\n")
+metrics_file.write(args.filename + ": ")
 for i in range(0, len(FWHMs)):
     metrics_file.write(str(h.getFWHM(HistARMlist[i])) + "\t")
+#    metrics_file.write(str(FWHMs[i]) + "\t")
 for i in range(0, len(FWHMs)):
     metrics_file.write(str(round(HistARMlist[i].GetRMS(), 2)) + "\t")
+#    metrics_file.write(str(RMSs[i]) + "\t")
 metrics_file.write("\n")
 metrics_file.close()
 #else:
