@@ -119,24 +119,24 @@ for y in range(0, len(trafiles)):
         if (Event.GetType() == M.MPhysicalEvent.c_Compton) and (low_e <= Event.Ei() <= high_e):
             ARM_value = Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi);
             print(ARM_value)
-            print(Event.GetPhi())
-            if 0 < Event.GetPhi() and Event.GetPhi() <= 20:
+            print(Event.Phi())
+            if 0 < Event.Phi() and Event.Phi() <= 20:
                 HistARMlist[0].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 20 < Event.GetPhi() and Event.GetPhi() <= 40:
+            elif 20 < Event.Phi() and Event.Phi() <= 40:
                 HistARMlist[1].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 40 < Event.GetPhi() and Event.GetPhi() <= 60:
+            elif 40 < Event.Phi() and Event.Phi() <= 60:
                 HistARMlist[2].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 60 < Event.GetPhi() and Event.GetPhi() <= 80:
+            elif 60 < Event.Phi() and Event.Phi() <= 80:
                 HistARMlist[3].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 80 < Event.GetPhi() and Event.GetPhi() <= 100:
+            elif 80 < Event.Phi() and Event.Phi() <= 100:
                 HistARMlist[4].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 100 < Event.GetPhi() and Event.GetPhi() <= 120:
+            elif 100 < Event.Phi() and Event.Phi() <= 120:
                 HistARMlist[5].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 120 < Event.GetPhi() and Event.GetPhi() <= 140:
+            elif 120 < Event.Phi() and Event.Phi() <= 140:
                 HistARMlist[6].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 140 < Event.GetPhi() and Event.GetPhi() <= 160:
+            elif 140 < Event.Phi() and Event.Phi() <= 160:
                 HistARMlist[7].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 160 < Event.GetPhi() and Event.GetPhi() <= 180:
+            elif 160 < Event.Phi() and Event.Phi() <= 180:
                 HistARMlist[8].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
             else:
                 pass
