@@ -153,23 +153,23 @@ for y in range(0, len(trafiles)):
             ARM_value = Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi);
             print(ARM_value)
             print(Event.Phi())
-            if 0 < Event.Phi() and Event.Phi() <= 20:
+            if 0 < Event.Phi() and Event.Phi() <= 0.349:
                 HistARMlist[0].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 20 < Event.Phi() and Event.Phi() <= 40:
+            elif 20 < Event.Phi() and Event.Phi() <= 0.698:
                 HistARMlist[1].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 40 < Event.Phi() and Event.Phi() <= 60:
+            elif 40 < Event.Phi() and Event.Phi() <= 1.047:
                 HistARMlist[2].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 60 < Event.Phi() and Event.Phi() <= 80:
+            elif 60 < Event.Phi() and Event.Phi() <= 1.396:
                 HistARMlist[3].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 80 < Event.Phi() and Event.Phi() <= 100:
+            elif 80 < Event.Phi() and Event.Phi() <= 1.745:
                 HistARMlist[4].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 100 < Event.Phi() and Event.Phi() <= 120:
+            elif 100 < Event.Phi() and Event.Phi() <= 2.094:
                 HistARMlist[5].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 120 < Event.Phi() and Event.Phi() <= 140:
+            elif 120 < Event.Phi() and Event.Phi() <= 2.443:
                 HistARMlist[6].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 140 < Event.Phi() and Event.Phi() <= 160:
+            elif 140 < Event.Phi() and Event.Phi() <= 2.793:
                 HistARMlist[7].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 160 < Event.Phi() and Event.Phi() <= 180:
+            elif 160 < Event.Phi() and Event.Phi() <= 3.142:
                 HistARMlist[8].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
             else:
                 pass
