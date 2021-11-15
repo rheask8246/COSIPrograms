@@ -36,10 +36,6 @@ parser.add_argument('-i', '--isotope', type=str, default='none', help='The name 
 parser.add_argument('-r', '--run', type=str, default='none', help='The name of the run')
 parser.add_argument('-p', '--training', type=str, default='none', help='The name of the training output file')
 
-
-#using Y88 Run 104 for testing...
-#Path to Y88 tra file: /volumes/selene/users/rhea/revan/output_RF/Run104.Y88.tra
-
 args = parser.parse_args()
 
 if args.filename != "":
@@ -96,8 +92,10 @@ else:
 
 #ARM histograms sorted by phi of the event, separated by 20 degrees
 HistARMlist = []
-for i in range(0, 9):
+for i in range(0, 18):
     HistARMlist.append(M.TH1D("Angle Range " + str(i), title, 3601, -180, 180))
+
+print("Starting data collection...")
 
 # Load file
 for y in range(0, len(trafiles)):
@@ -107,6 +105,7 @@ for y in range(0, len(trafiles)):
         quit()
     else:
         print("File " + FileName + " loaded!")
+
 
 #Fill Histogram values
     counter = 0
@@ -118,35 +117,65 @@ for y in range(0, len(trafiles)):
 
         if (Event.GetType() == M.MPhysicalEvent.c_Compton) and (low_e <= Event.Ei() <= high_e):
             ARM_value = Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi);
-            print(ARM_value)
-            print(Event.Phi())
-            if 0 < Event.Phi() and Event.Phi() <= 20:
-                HistARMlist[0].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 20 < Event.Phi() and Event.Phi() <= 40:
-                HistARMlist[1].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 40 < Event.Phi() and Event.Phi() <= 60:
-                HistARMlist[2].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 60 < Event.Phi() and Event.Phi() <= 80:
-                HistARMlist[3].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 80 < Event.Phi() and Event.Phi() <= 100:
-                HistARMlist[4].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 100 < Event.Phi() and Event.Phi() <= 120:
-                HistARMlist[5].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 120 < Event.Phi() and Event.Phi() <= 140:
-                HistARMlist[6].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 140 < Event.Phi() and Event.Phi() <= 160:
-                HistARMlist[7].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 160 < Event.Phi() and Event.Phi() <= 180:
-                HistARMlist[8].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
+            print("ARM_value: " + str(ARM_value))
+            print("Phi: " + str(Event.Phi()))
+            if 0 < Event.Phi() and Event.Phi() <= 0.175:
+                HistARMlist[0].Fill(ARM_value);
+            elif 0.175 < Event.Phi() and Event.Phi() <= 0.349:
+                HistARMlist[1].Fill(ARM_value);
+            elif 0.349 < Event.Phi() and Event.Phi() <= 0.523:
+                HistARMlist[2].Fill(ARM_value);
+            elif 0.523 < Event.Phi() and Event.Phi() <= 0.698:
+                HistARMlist[3].Fill(ARM_value);
+            elif 0.698 < Event.Phi() and Event.Phi() <= 0.873:
+                HistARMlist[4].Fill(ARM_value);
+            elif 0.873 < Event.Phi() and Event.Phi() <= 1.222:
+                HistARMlist[5].Fill(ARM_value);
+            elif 1.222 < Event.Phi() and Event.Phi() <= 1.396:
+                HistARMlist[6].Fill(ARM_value);
+            elif 1.396 < Event.Phi() and Event.Phi() <= 1.571:
+                HistARMlist[7].Fill(ARM_value);
+            elif 1.571 < Event.Phi() and Event.Phi() <= 1.745:
+                HistARMlist[8].Fill(ARM_value);
+            elif 1.745 < Event.Phi() and Event.Phi() <= 1.919:
+                HistARMlist[9].Fill(ARM_value);
+            elif 1.919 < Event.Phi() and Event.Phi() <= 2.094:
+                HistARMlist[10].Fill(ARM_value);
+            elif 2.094 < Event.Phi() and Event.Phi() <= 2.269:
+                HistARMlist[11].Fill(ARM_value);
+            elif 2.269 < Event.Phi() and Event.Phi() <= 2.443:
+                HistARMlist[12].Fill(ARM_value);
+            elif 2.443 < Event.Phi() and Event.Phi() <= 2.618:
+                HistARMlist[13].Fill(ARM_value);
+            elif 2.618 < Event.Phi() and Event.Phi() <= 2.793:
+                HistARMlist[14].Fill(ARM_value);
+            elif 2.793 < Event.Phi() and Event.Phi() <= 2.967:
+                HistARMlist[15].Fill(ARM_value);
+            elif 2.967 < Event.Phi() and Event.Phi() <= 3.142:
+                HistARMlist[16].Fill(ARM_value);
             else:
                 pass
+print("\n")
+print("Data collection complete. Getting data analysis parameters..." + "\n")
 
 #get back the fwhm and rms values
 #v1: see these values printed
 #TODO v2: store these values into a file
+
+FWHMlist = []
+RMSlist = []
+
 for i in range(len(HistARMlist)):
-    lower_range = i*20
-    upper_range = (i+1)*20
+    lower_range = i*10
+    upper_range = (i+1)*10
     range_str = str(lower_range) + " to " + str(upper_range)
-    print("FWHM for range: %s" + str(h.getFWHM(HistARMlist[i])) % range_str)
-    print("RMS for range: %s" + str(round(HistARMlist[i].GetRMS(), 2)) % range_str)
+    FWHMlist.append(h.getFWHM(HistARMlist[i]))
+    RMSlist.append(round(HistARMlist[i].GetRMS(), 2))
+
+    #print(range_str)
+    #print(str(h.getFWHM(HistARMlist[i])))
+    print("FWHM for range: " + range_str + ": " + str(h.getFWHM(HistARMlist[i])))
+    print("RMS for range: " + range_str + ": " + str(round(HistARMlist[i].GetRMS(), 2)))
+
+print(FWHMlist)
+print(RMSlist)
