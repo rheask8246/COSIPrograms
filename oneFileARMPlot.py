@@ -231,13 +231,6 @@ legend.AddEntry(Header, "Peak Height", "l")
 legend.AddEntry(Header, "Total Count", "l")
 legend.AddEntry(Header, "FWHM", "l")
 
-
-#test that the fwhm values are filling each bin
-print("Debugging FWHM...")
-for i in range(len(HistARMlist)):
-    print(str(h.getFWHM(HistARMlist[i])))
-print("end of FWHM prints...")
-
 for i in range(len(HistARMlist)):
     legend.AddEntry(HistARMlist[i], "Scatter Bin " + str(i), "l")
     legend.AddEntry(HistARMlist[i], str(round(HistARMlist[i].GetRMS(), 2)), "l")
