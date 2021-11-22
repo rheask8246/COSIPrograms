@@ -176,11 +176,11 @@ for y in range(0, len(trafiles)):
 
 """
 #Parallelizing
-FWHMs = [None]*len(trafiles)
-RMSs = [None]*len(trafiles)
-Peaks = [None]*len(trafiles)
+FWHMs = [None]*9
+RMSs = [None]*9
+Peaks = [None]*9
 #if __name__ == '__main__':
-for i in range(0, len(trafiles)):
+for i in range(0, 9):
     FWHMs[i] = pool.apply(h.bootstrapFWHM, args=(HistARMlist[i], 1000,))
     RMSs[i] = pool.apply(h.bootstrapRMS, args=(HistARMlist[i], 1000,))
     Peaks[i] = pool.apply(h.bootstrapPeak, args=(HistARMlist[i], 1000,))
@@ -192,7 +192,7 @@ pool.join()
 
 max = HistARMlist[0].GetMaximum()
 for m in range(1, len(HistARMlist)):
-    if HistARMlist[m].GetMaximum()>max:
+    if HistARMlist[m].GetMaximum() > max:
         max = HistARMlist[m].GetMaximum()
 for m in range(0, len(HistARMlist)):
     HistARMlist[m].SetMaximum(1.1*max)
@@ -225,7 +225,7 @@ legend = M.TLegend(0.15, 0.35, 0.85, 0.1)
 legend.SetTextSize(0.017)
 legend.SetNColumns(5)
 
-legend.AddEntry(Header, "Analysis Methods", "l")
+legend.AddEntry(Header, "Scatter Angle Bins", "l")
 legend.AddEntry(Header, "RMS Value", "l")
 legend.AddEntry(Header, "Peak Height", "l")
 legend.AddEntry(Header, "Total Count", "l")
@@ -267,3 +267,11 @@ for i in range(len(HistARMlist)):
     print("FWHM for range: %s" + str(h.getFWHM(HistARMlist[i])) % range_str)
     print("RMS for range: %s" + str(round(HistARMlist[i].GetRMS(), 2)) % range_str)
 """
+
+if Batch == False:
+    import os
+    print("ATTENTION: Please exit by clicking: File -> Close ROOT! Do not just close the window by clicking \"x\"")
+    print("           ... and if you didn't honor this warning, and are stuck, execute the following in a new terminal: kill " + str(os.getpid()))
+    M.gApplication.Run()
+if Batch == True:
+    CanvasARM.SaveAs("Results_{}_{}_{}keV.pdf".format(run, isotope, energy))
