@@ -106,6 +106,7 @@ for y in range(0, len(trafiles)):
     else:
         print("File " + FileName + " loaded!")
 
+    countdict = {"else" : 0, "count1" : 0, "count2" : 0, "count3" : 0, "count4" : 0, "count5" : 0, "count6" : 0, "count7" : 0, "count8" : 0, "count9" : 0, "count10" : 0, "count11" : 0, "count12" : 0, "count13" : 0, "count14" : 0, "count15" : 0, "count16" : 0, "count17" : 0}
 
 #Fill Histogram values
     counter = 0
@@ -121,39 +122,57 @@ for y in range(0, len(trafiles)):
             print("Phi: " + str(Event.Phi()))
             if 0 < Event.Phi() and Event.Phi() <= 0.175:
                 HistARMlist[0].Fill(ARM_value);
+                countdict["count1"] += 1
             elif 0.175 < Event.Phi() and Event.Phi() <= 0.349:
                 HistARMlist[1].Fill(ARM_value);
+                countdict["count2"] += 1
             elif 0.349 < Event.Phi() and Event.Phi() <= 0.523:
                 HistARMlist[2].Fill(ARM_value);
+                countdict["count3"] += 1
             elif 0.523 < Event.Phi() and Event.Phi() <= 0.698:
                 HistARMlist[3].Fill(ARM_value);
+                countdict["count4"] += 1
             elif 0.698 < Event.Phi() and Event.Phi() <= 0.873:
                 HistARMlist[4].Fill(ARM_value);
+                countdict["count5"] += 1
             elif 0.873 < Event.Phi() and Event.Phi() <= 1.222:
                 HistARMlist[5].Fill(ARM_value);
+                countdict["count6"] += 1
             elif 1.222 < Event.Phi() and Event.Phi() <= 1.396:
                 HistARMlist[6].Fill(ARM_value);
+                countdict["count7"] += 1
             elif 1.396 < Event.Phi() and Event.Phi() <= 1.571:
                 HistARMlist[7].Fill(ARM_value);
+                countdict["count8"] += 1
             elif 1.571 < Event.Phi() and Event.Phi() <= 1.745:
                 HistARMlist[8].Fill(ARM_value);
+                countdict["count9"] += 1
             elif 1.745 < Event.Phi() and Event.Phi() <= 1.919:
                 HistARMlist[9].Fill(ARM_value);
+                countdict["count10"] += 1
             elif 1.919 < Event.Phi() and Event.Phi() <= 2.094:
                 HistARMlist[10].Fill(ARM_value);
+                countdict["count11"] += 1
             elif 2.094 < Event.Phi() and Event.Phi() <= 2.269:
                 HistARMlist[11].Fill(ARM_value);
+                countdict["count12"] += 1
             elif 2.269 < Event.Phi() and Event.Phi() <= 2.443:
                 HistARMlist[12].Fill(ARM_value);
+                countdict["count13"] += 1
             elif 2.443 < Event.Phi() and Event.Phi() <= 2.618:
                 HistARMlist[13].Fill(ARM_value);
+                countdict["count14"] += 1
             elif 2.618 < Event.Phi() and Event.Phi() <= 2.793:
                 HistARMlist[14].Fill(ARM_value);
+                countdict["count15"] += 1
             elif 2.793 < Event.Phi() and Event.Phi() <= 2.967:
                 HistARMlist[15].Fill(ARM_value);
+                countdict["count16"] += 1
             elif 2.967 < Event.Phi() and Event.Phi() <= 3.142:
                 HistARMlist[16].Fill(ARM_value);
+                countdict["count17"] += 1
             else:
+                countdict["else"] += 1
                 pass
 print("\n")
 print("Data collection complete. Getting data analysis parameters..." + "\n")
@@ -179,3 +198,4 @@ for i in range(len(HistARMlist)):
 
 print(FWHMlist)
 print(RMSlist)
+print(list(countdict.values()))
