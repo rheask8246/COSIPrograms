@@ -155,21 +155,21 @@ for y in range(0, len(trafiles)):
             print(Event.Phi())
             if 0 < Event.Phi() and Event.Phi() <= 0.349:
                 HistARMlist[0].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 20 < Event.Phi() and Event.Phi() <= 0.698:
+            elif 0.349 < Event.Phi() and Event.Phi() <= 0.698:
                 HistARMlist[1].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 40 < Event.Phi() and Event.Phi() <= 1.047:
+            elif 0.698 < Event.Phi() and Event.Phi() <= 1.047:
                 HistARMlist[2].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 60 < Event.Phi() and Event.Phi() <= 1.396:
+            elif 1.047 < Event.Phi() and Event.Phi() <= 1.396:
                 HistARMlist[3].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 80 < Event.Phi() and Event.Phi() <= 1.745:
+            elif 1.396 < Event.Phi() and Event.Phi() <= 1.745:
                 HistARMlist[4].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 100 < Event.Phi() and Event.Phi() <= 2.094:
+            elif 1.745 < Event.Phi() and Event.Phi() <= 2.094:
                 HistARMlist[5].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 120 < Event.Phi() and Event.Phi() <= 2.443:
+            elif 2.094 < Event.Phi() and Event.Phi() <= 2.443:
                 HistARMlist[6].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 140 < Event.Phi() and Event.Phi() <= 2.793:
+            elif 2.443 < Event.Phi() and Event.Phi() <= 2.793:
                 HistARMlist[7].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
-            elif 160 < Event.Phi() and Event.Phi() <= 3.142:
+            elif 2.793 < Event.Phi() and Event.Phi() <= 3.142:
                 HistARMlist[8].Fill(Event.GetARMGamma(M.MVector(X, Y, Z))*(180.0/pi));
             else:
                 pass
@@ -231,8 +231,15 @@ legend.AddEntry(Header, "Peak Height", "l")
 legend.AddEntry(Header, "Total Count", "l")
 legend.AddEntry(Header, "FWHM", "l")
 
+
+#test that the fwhm values are filling each bin
+print("Debugging FWHM...")
 for i in range(len(HistARMlist)):
-    legend.AddEntry(HistARMlist[i], "Classic Method", "l")
+    print(str(h.getFWHM(HistARMlist[i])))
+print("end of FWHM prints...")
+
+for i in range(len(HistARMlist)):
+    legend.AddEntry(HistARMlist[i], "Scatter Bin " + str(i), "l")
     legend.AddEntry(HistARMlist[i], str(round(HistARMlist[i].GetRMS(), 2)), "l")
     legend.AddEntry(HistARMlist[i], str(h.getMaxHist(HistARMlist[i])), "l")
     legend.AddEntry(HistARMlist[i], str(HistARMlist[i].GetEntries()), "l")
